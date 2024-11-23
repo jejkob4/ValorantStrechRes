@@ -13,8 +13,11 @@ VALORANT_CONFIG_DIR = os.path.join(USER_PROFILE, "AppData", "Local", "VALORANT",
 def list_files_in_directory(directory):
     return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
 
-def list_directories_in_directory(directory):
-    return [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+def list_directories_in_directory(directory, exclude=[]):
+    return [
+        d for d in os.listdir(directory)
+        if os.path.isdir(os.path.join(directory, d)) and d not in exclude
+    ]
 
 def copy_and_rename(source_file, destination_directory):
     destination_file = os.path.join(destination_directory, "GameUserSettings.ini")
