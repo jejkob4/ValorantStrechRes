@@ -47,7 +47,9 @@ def populate_profile_folders():
         messagebox.showerror("Error", f"Valorant directory '{VALORANT_CONFIG_DIR}' does not exist.")
         return
 
-    directories = list_directories_in_directory(VALORANT_CONFIG_DIR)
+
+    excluded_folders = ["Windows", "CrashReportClient"]
+    directories = list_directories_in_directory(VALORANT_CONFIG_DIR, exclude=excluded_folders)
     profile_listbox.delete(0, tk.END)
 
     if not directories:
