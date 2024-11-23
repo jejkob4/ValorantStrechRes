@@ -79,7 +79,7 @@ def copy_file():
     destination_folder = os.path.join(VALORANT_CONFIG_DIR, selected_profile, "Windows")
 
     if not os.path.exists(destination_folder):
-        messagebox.showerror("Error", f"This is nota valid profile.")
+        messagebox.showerror("Error", f"This is not a valid profile.")
         return
 
     copy_and_rename(source_file, destination_folder)
