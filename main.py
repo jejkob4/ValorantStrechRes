@@ -36,11 +36,26 @@ def populate_source_files():
         for file in files:
             source_listbox.insert(tk.END, file)
 
-def browse_destination_folder():
-    folder = filedialog.askdirectory(initialdir=VALORANT_CONFIG_DIR, title="Select Destination Folder")
-    if folder:
-        folder_plus_windows = os.path.join(folder, 'Windows')
-        destination_folder_var.set(folder_plus_windows)
+def populate_source_folders():
+    if not os.path.isdir(VALORANT_CONFIG_DIR):
+        messagebox.showerror("Error", f"Valorant directory '{VALORANT_CONFIG_DIR}' does not exist.")
+        return
+
+    directories = list_directories_in_directory(SOURCE_DIRECTORY)
+    source_listbox.delete(0, tk.END)
+
+    if not directories:
+        source_listbox.insert(tk.END, "No folders found in the source directory.")
+    else:
+        for directory in directories:
+            source_listbox.insert(tk.END, directory)
+
+
+#   def browse_destination_folder():
+#    folder = filedialog.askdirectory(initialdir=VALORANT_CONFIG_DIR, title="Select Destination Folder")
+#    if folder:
+#        folder_plus_windows = os.path.join(folder, 'Windows')
+#        destination_folder_var.set(folder_plus_windows)
 
 def copy_file():
     destination_folder = destination_folder_var.get()
